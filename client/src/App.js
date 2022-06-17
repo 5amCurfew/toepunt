@@ -4,6 +4,16 @@ import AsyncSelect from 'react-select/async';
 import GameGrid from './lib/GameGrid';
 import Emoji from './lib/Emoji';
 
+const toepunt =
+'   __                               __ \n'+
+'  / /_____  ___  ____  __  ______  / /_ \n'+
+' / __/ __ \\/ _ \\/ __ \\/ / / / __ \\/ __/\n'+
+'/ /_/ /_/ /  __/ /_/ / /_/ / / / / /_ \n'+
+'\\__/\\____/\\___/ .___/\\__,_/_/ /_/\\__/\n'+
+'             /_/                         \n'
+
+console.log(toepunt);
+
 const genStarCount = (team, att) => {
     switch(att){
         case "DEF":
