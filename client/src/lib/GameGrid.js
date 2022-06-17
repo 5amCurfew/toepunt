@@ -1,17 +1,168 @@
 import React from 'react';
 import * as d3 from 'd3';
-import { useD3 } from './useD3';
+
+const boxes = [
+  {
+      "home": "0",
+      "away": "0"
+  },
+  {
+      "home": "0",
+      "away": "1"
+  },
+  {
+      "home": "0",
+      "away": "2"
+  },
+  {
+      "home": "0",
+      "away": "3"
+  },
+  {
+      "home": "0",
+      "away": "4"
+  },
+  {
+      "home": "1",
+      "away": "0"
+  },
+  {
+      "home": "1",
+      "away": "1"
+  },
+  {
+      "home": "1",
+      "away": "2"
+  },
+  {
+      "home": "1",
+      "away": "3"
+  },
+  {
+      "home": "1",
+      "away": "4"
+  },
+  {
+      "home": "2",
+      "away": "0"
+  },
+  {
+      "home": "2",
+      "away": "1"
+  },
+  {
+      "home": "2",
+      "away": "2"
+  },
+  {
+      "home": "2",
+      "away": "3"
+  },
+  {
+      "home": "2",
+      "away": "4"
+  },
+  {
+      "home": "3",
+      "away": "0"
+  },
+  {
+      "home": "3",
+      "away": "1"
+  },
+  {
+      "home": "3",
+      "away": "2"
+  },
+  {
+      "home": "3",
+      "away": "3"
+  },
+  {
+      "home": "3",
+      "away": "4"
+  },
+  {
+      "home": "4",
+      "away": "0"
+  },
+  {
+      "home": "4",
+      "away": "1"
+  },
+  {
+      "home": "4",
+      "away": "2"
+  },
+  {
+      "home": "4",
+      "away": "3"
+  },
+  {
+      "home": "4",
+      "away": "4"
+  },
+  {
+      "home": "0",
+      "away": "5+"
+  },
+  {
+      "home": "1",
+      "away": "5+"
+  },
+  {
+      "home": "2",
+      "away": "5+"
+  },
+  {
+      "home": "3",
+      "away": "5+"
+  },
+  {
+      "home": "4",
+      "away": "5+"
+  },
+  {
+      "home": "5+",
+      "away": "0"
+  },
+  {
+      "home": "5+",
+      "away": "1"
+  },
+  {
+      "home": "5+",
+      "away": "2"
+  },
+  {
+      "home": "5+",
+      "away": "3"
+  },
+  {
+      "home": "5+",
+      "away": "4"
+  },
+  {
+      "home": "5+",
+      "away": "5+"
+  }]
+
+
 
 const GameGrid = ({ data }) => {
-  const ref = useD3( (svg) => {
-      
-    const margin = {top: 0, right: 0, bottom: 0, left: 0};
-    const width = 420 - margin.left - margin.right;
-    const height = 380 - margin.top - margin.bottom;
+  const svgRef = React.useRef(null);
 
-    svg
-      .attr("viewBox", `-40 -40 ${width + 50} ${height + 50}`)
+  const margin = {top: 25, right: 25, bottom: 25, left: 25};
+  const width = 420 - margin.left - margin.right;
+  const height = 380 - margin.top - margin.bottom;
 
+  React.useEffect(() => {
+    const svgEl = d3.select(svgRef.current);
+    svgEl.selectAll("*").remove();
+  
+    const svg = svgEl
+      .attr("viewBox", `-30 -40 ${width + 50} ${height + 50}`)
+  
     var x = d3
       .scaleBand()
       .range([ 0, width ])
@@ -30,7 +181,7 @@ const GameGrid = ({ data }) => {
       .range([ height, 0 ])
       .domain((['0', '1', '2', '3', '4', '5+']).reverse())
       .padding(0.05)
-
+  
     svg.append('g')
       .style('font-size', 15)
       .style('color', "grey")
@@ -38,70 +189,62 @@ const GameGrid = ({ data }) => {
       .call(d3.axisLeft(y).tickSize(0))
       .select('.domain')
       .remove()
-
+  
     // Build color scale
     var homeColour = d3.scaleLinear()
       .domain([0,0.12])
-      .range(['#cde4f1', '#077bbd'])
+      .range(['#FFFFFF', '#077bbd'])
     var awayColour = d3.scaleLinear()
       .domain([0,0.12])
-      .range(['#ffddf4', '#ff59cc'])
+      .range(['#FFFFFF', '#ff59cc'])
     var drawColour = d3.scaleLinear()
       .domain([0,0.12])
-      .range(['#e4e4e4', '#7C7C7C'])
+      .range(['#FFFFFF', '#7C7C7C'])
     
     svg.selectAll()
-      .data(data.scores, function(d) {return d.away+':'+d.home;})
-      .enter()
-      .append('rect')
-      .attr('x', function(d) { return x(d.away) })
-      .attr('y', function(d) { return y(d.home) })
-      .attr('rx', 4)
-      .attr('ry', 4)
-      .attr('width', x.bandwidth() )
-      .attr('height', y.bandwidth() )
-      .style('fill', function(d) { 
-          if(d.result === 'HOME'){
-              return homeColour(d.probability)
-          } else if(d.result === 'AWAY'){
-              return awayColour(d.probability)
-          } else{
-              return drawColour(d.probability)
-          }
-      })
-      .attr("text-anchor", "middle")
-      .attr("dominant-baseline", "central") 
-      .style('stroke-width', 1)
-      .style('stroke', 'grey')
-      .style('opacity', 0.8)
+      .data(boxes, function(d) {return d.away+':'+d.home;})
+      .join('rect')
+        .attr('class', 'gridBox')
+        .attr('x', function(d) { return x(d.away) })
+        .attr('y', function(d) { return y(d.home) })
+        .attr('rx', 4)
+        .attr('ry', 4)
+        .attr('width', x.bandwidth() )
+        .attr('height', y.bandwidth() )
+        .style('stroke-width', 1)
+        .style('stroke', 'grey')
+        .style('opacity', 0.8)
+        .style('fill', 'transparent')
 
-      svg.selectAll()
+    svg.selectAll('.gridBox')
         .data(data.scores)
-        .enter()
-        .append("text")
-        .attr("class", "probLabel")
-        .attr('opacity', .5)
-        .attr("x", function(d) { return x(d.away) + width/20 })
-        .attr("y", function(d) { return y(d.home) + height/10})
+        .join("rect")
+          .style('fill', function(d) { 
+            if(d.result === 'HOME'){
+                return homeColour(d.probability)
+            } else if(d.result === 'AWAY'){
+                return awayColour(d.probability)
+            } else{
+                return drawColour(d.probability)
+            }
+        })
+
+    svg.selectAll()
+      .data(data.scores)
+      .enter()
+      .append("text")
+        .attr('fill', 'grey')
+        .attr('font-weight', function(d) { return d.probability*800 + 500 }) 
+        .attr('opacity', 1)
+        .attr("x", function(d) { return x(d.away) + 18 })
+        .attr("y", function(d) { return y(d.home) + 30 })
         .text(function(d) {
             return `${Math.round(d.probability*100)}%`;
         })
-    
-    }, 
-    [data.scores]
-  );
 
-  return (
-    <svg
-      ref={ref}
-      style={{
-        height: "40%",
-        width: "40%"
-      }}
-    >
-      <g className="plot-area"/>
-    </svg>
-  );
-}
+  }, [data, height, width])
+
+  return <svg ref={svgRef}/>;
+};
   
 export default GameGrid;
