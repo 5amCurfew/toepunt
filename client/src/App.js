@@ -3,6 +3,8 @@ import axios from "axios";
 import AsyncSelect from 'react-select/async';
 import GameGrid from './lib/GameGrid';
 import Emoji from './lib/Emoji';
+import './App.css';
+import ResultGrid from "./lib/ResultGrid";
 
 const toepunt =
 '   __                               __ \n'+
@@ -75,6 +77,7 @@ function App() {
           awayTeam: awayTeam
         })
 
+        console.log(res.data)
         setResults(res.data)
 
     }
@@ -99,10 +102,17 @@ function App() {
             getOptionLabel={(t) => t.Name}
             getOptionValue={(t) => t}
         />
-        <div>
-            <div>Def</div> {homeTeam ? <Emoji symbol="⭐" label="starHomeDef" N={genStarCount(homeTeam, "DEF")}/> : "-"}
-            <div>Mid</div> {homeTeam ? <Emoji symbol="⭐" label="starHomeMid" N={genStarCount(homeTeam, "MID")}/> : "-"}
-            <div>Att</div> {homeTeam ? <Emoji symbol="⭐" label="starHomeAtt" N={genStarCount(homeTeam, "ATT")}/> : "-"}
+
+        <div className='ratingsBox'>
+            <div className='ratingsBlock'>
+                <div className='ratingsTitle'>Def <br></br>{homeTeam ? <Emoji symbol="⭐" label="starHomeDef" N={genStarCount(homeTeam, "DEF")}/> : "-"} </div> 
+            </div>
+            <div className='ratingsBlock'>
+                <div className='ratingsTitle'>Mid <br></br> {homeTeam ? <Emoji symbol="⭐" label="starHomeMid" N={genStarCount(homeTeam, "MID")}/> : "-"} </div> 
+            </div>
+            <div className='ratingsBlock'>
+                <div className='ratingsTitle'>Att <br></br> {homeTeam ? <Emoji symbol="⭐" label="starHomeAtt" N={genStarCount(homeTeam, "ATT")}/> : "-"} </div> 
+            </div>
         </div>
 
         <AsyncSelect
@@ -112,10 +122,17 @@ function App() {
             getOptionLabel={(t) => t.Name}
             getOptionValue={(t) => t}
         />
-        <div>
-            <div>Def</div> {awayTeam ? <Emoji symbol="⭐" label="starAwayDef" N={genStarCount(awayTeam, "DEF")}/> : "-"}
-            <div>Mid</div> {awayTeam ? <Emoji symbol="⭐" label="starAwayMid" N={genStarCount(awayTeam, "MID")}/> : "-"}
-            <div>Att</div> {awayTeam ? <Emoji symbol="⭐" label="starAwayAtt" N={genStarCount(awayTeam, "ATT")}/> : "-"}
+
+        <div className='ratingsBox'>
+            <div className='ratingsBlock'>
+                <div className='ratingsTitle'>Def <br></br>{awayTeam ? <Emoji symbol="⭐" label="starHomeDef" N={genStarCount(awayTeam, "DEF")}/> : "-"} </div> 
+            </div>
+            <div className='ratingsBlock'>
+                <div className='ratingsTitle'>Mid <br></br> {awayTeam ? <Emoji symbol="⭐" label="starHomeMid" N={genStarCount(awayTeam, "MID")}/> : "-"} </div> 
+            </div>
+            <div className='ratingsBlock'>
+                <div className='ratingsTitle'>Att <br></br> {awayTeam ? <Emoji symbol="⭐" label="starHomeAtt" N={genStarCount(awayTeam, "ATT")}/> : "-"} </div> 
+            </div>
         </div>
 
         <GameGrid 
@@ -337,10 +354,15 @@ function App() {
                         "result": "DRAW",
                         "probability": 0
                     }
-                ]
+                    ]
+                }
             }
-        }
         />
+
+        <ResultGrid
+            data={ results && results.scores != null ? results : { resultHome: 0.3333, resultDraw: 0.3333, resultAway: 0.3333 } }
+        />
+
     </div>
   );
 }
