@@ -77,7 +77,6 @@ function App() {
           awayTeam: awayTeam
         })
 
-        console.log(res.data)
         setResults(res.data)
 
     }

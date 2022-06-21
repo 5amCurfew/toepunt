@@ -57,7 +57,7 @@ const ResultGrid = ({ data }) => {
                 .attr("fill", "black")
                 .attr("x", d => x( (d.start + d.end)/2 - .04 ))
                 .attr("y", height - margin.top/3)
-                .attr("opacity", .5)
+                .attr("opacity", (d) => data.scores != null && d.end - d.start > 0.06 ? 1 : 0 )
                 .text((d) => Math.round(d.probability*100) + '%')
   
     // eslint-disable-next-line react-hooks/exhaustive-deps
