@@ -19,6 +19,7 @@ app.get("/teams", (req, res) => {
 
 app.post("/predict", (req, res) => {
   res.json( Game.predictScores(req.body.homeTeam, req.body.awayTeam) )
+  console.log(req.body.homeTeam.name + ' vs ' + req.body.awayTeam.name + ' requested')
 });
 
 // ---------------------------

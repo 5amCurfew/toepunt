@@ -98,7 +98,7 @@ function App() {
             onChange={handleHomeChange}
             loadOptions={loadTeams}
             defaultOptions
-            getOptionLabel={(t) => t.Name}
+            getOptionLabel={(t) => t.name}
             getOptionValue={(t) => t}
         />
 
@@ -118,7 +118,7 @@ function App() {
             onChange={handleAwayChange}
             loadOptions={loadTeams}
             defaultOptions
-            getOptionLabel={(t) => t.Name}
+            getOptionLabel={(t) => t.name}
             getOptionValue={(t) => t}
         />
 
