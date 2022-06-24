@@ -156,14 +156,14 @@ const GameGrid = ({ data }) => {
 
     const margin = {top: 25, right: 25, bottom: 25, left: 25};
     const width = 420 - margin.left - margin.right;
-    const height = 380 - margin.top - margin.bottom;
+    const height = 420 - margin.top - margin.bottom;
 
     React.useEffect(() => {
         const svgEl = d3.select(svgRef.current);
         svgEl.selectAll("*").remove();
     
         const svg = svgEl
-        .attr("viewBox", `-30 -40 ${width + 50} ${height + 50}`)
+            .attr("viewBox", [-margin.left, -margin.top, width + margin.left*2, height + margin.top])
     
         var x = d3
             .scaleBand()
@@ -237,8 +237,8 @@ const GameGrid = ({ data }) => {
             .append("text")
                 .attr('fill', 'black')
                 .attr('opacity', function(d) { return scale(d.probability, 0, 0.2, 0.2, 1) })
-                .attr("x", function(d) { return x(d.away) + 16 })
-                .attr("y", function(d) { return y(d.home) + 30 })
+                .attr("x", function(d) { return x(d.away) + 20 })
+                .attr("y", function(d) { return y(d.home) + 33 })
                 .text(function(d) {
                     return `${Math.round(d.probability*100)}%`;
                 })
@@ -246,7 +246,7 @@ const GameGrid = ({ data }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
 
-    return <svg ref={svgRef}/>;
+    return <svg ref={svgRef} class="GameGrid"/>;
 };
   
 export default GameGrid;

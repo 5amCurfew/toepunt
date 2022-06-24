@@ -1,10 +1,15 @@
+// Modules
 import React from "react";
 import axios from "axios";
+// Components
 import AsyncSelect from 'react-select/async';
 import GameGrid from './lib/GameGrid';
+import ResultGrid from "./lib/ResultGrid";
+import CalibrationPlot from "./lib/CalibrationPlot";
+
+// Misc.
 import Emoji from './lib/Emoji';
 import './App.css';
-import ResultGrid from "./lib/ResultGrid";
 
 const toepunt =
 '   __                               __ \n'+
@@ -54,9 +59,12 @@ function App() {
     predictResults();
   };
 
+
   ////////////////////////////
   // State results
   ////////////////////////////
+
+  // Predict Results for given Game selection
   const [results, setResults] = React.useState( async () => {
 
     let res = await axios.post('/predict', {
@@ -82,6 +90,20 @@ function App() {
     }
   }
 
+
+  ////////////////////////////
+  // State calibrationData
+  ////////////////////////////
+
+  // Calibration Plot data
+  const [calibrationData, setCalibrationData] = React.useState( async () => {
+
+    let res = await axios.get('/calibration')
+  
+    return res.data
+
+  });
+
   React.useEffect(() => {
     predictResults()
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,6 +122,7 @@ function App() {
             defaultOptions
             getOptionLabel={(t) => t.name}
             getOptionValue={(t) => t}
+            className="teamSelect"
         />
 
         <div className='ratingsBox'>
@@ -120,6 +143,7 @@ function App() {
             defaultOptions
             getOptionLabel={(t) => t.name}
             getOptionValue={(t) => t}
+            className="teamSelect"
         />
 
         <div className='ratingsBox'>
@@ -360,6 +384,13 @@ function App() {
 
         <ResultGrid
             data={ results && results.scores != null ? results : { resultHome: 0.3333, resultDraw: 0.3333, resultAway: 0.3333 } }
+        />
+
+        <CalibrationPlot
+            data={ calibrationData != null ? calibrationData : [ 
+                {"forecastBin": 0.3, "binMin": 0.25, "binMax": 0.35, "observations": 50, "observed": 0.50},
+                {"forecastBin": 0.6, "binMin": 0.55, "binMax": 0.65, "observations": 50, "observed": 0.50},
+            ]}
         />
 
     </div>

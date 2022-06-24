@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 
 const teams = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/teams.json'))).teams
+const calibration = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/calibration.json'))).calibration
 
 app.get("/ping", (req, res) => {
     res.json( { message: "pong!" } )
@@ -15,6 +16,10 @@ app.get("/ping", (req, res) => {
 
 app.get("/teams", (req, res) => {
   res.json( teams )
+});
+
+app.get("/calibration", (req, res) => {
+  res.json( calibration )
 });
 
 app.post("/predict", (req, res) => {

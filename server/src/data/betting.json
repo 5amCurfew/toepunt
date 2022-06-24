@@ -1,0 +1,15 @@
+{
+    "bets": [
+        {
+            "date": "2022-06-21",
+            "game": "Arsenal vs Tottenham",
+            "bet": "Tottenham",
+            "betValue": 10,
+            "toepuntOdds": 1.8,
+            "marketOdds": 2.2,
+            "result": "WIN",
+            "resultValue": 22
+        }
+    ],
+    "updated_at": "2022-06-21 19:21:27.080366"
+}

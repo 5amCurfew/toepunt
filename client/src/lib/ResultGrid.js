@@ -63,7 +63,7 @@ const ResultGrid = ({ data }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
   
-    return <svg ref={svgRef}/>;
+    return <svg ref={svgRef} class="ResultsGrid"/>;
   };
     
   export default ResultGrid;

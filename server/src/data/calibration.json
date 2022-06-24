@@ -1,0 +1,26 @@
+{
+    "calibration": [
+        {
+            "forecastBin": 0.4,
+            "binMin": 0.35,
+            "binMax": 0.45,
+            "observations": 30,
+            "observed": 0.43
+        },
+        {
+            "forecastBin": 0.5,
+            "binMin": 0.45,
+            "binMax": 0.55,
+            "observations": 60,
+            "observed": 0.53
+        },
+        {
+            "forecastBin": 0.6,
+            "binMin": 0.55,
+            "binMax": 0.65,
+            "observations": 20,
+            "observed": 0.58
+        }
+    ],
+    "updated_at": "2022-06-21 19:21:27.080366"
+}
