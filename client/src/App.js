@@ -96,6 +96,7 @@ function App() {
   ////////////////////////////
 
   // Calibration Plot data
+  // eslint-disable-next-line no-unused-vars
   const [calibrationData, setCalibrationData] = React.useState( async () => {
 
     let res = await axios.get('/calibration')
