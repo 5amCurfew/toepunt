@@ -6,6 +6,8 @@ import AsyncSelect from 'react-select/async';
 import GameGrid from './lib/GameGrid';
 import ResultGrid from "./lib/ResultGrid";
 import CalibrationPlot from "./lib/CalibrationPlot";
+import BettingPlot from "./lib/BettingPlot";
+
 
 // Misc.
 import Emoji from './lib/Emoji';
@@ -20,6 +22,28 @@ const toepunt =
 '             /_/                         \n'
 
 console.log(toepunt);
+
+const customStylesHomeMenu = {
+    control: (provided, state) => ({
+      ...provided,
+      border: '2px solid #077bbd',
+      height: 50,
+      minHeight: 50,
+      fontSize: 15,
+      padding: 0
+    })
+};
+
+const customStylesAwayMenu = {
+    control: (provided, state) => ({
+      ...provided,
+      border: '2px solid #fface5',
+      height: 50,
+      minHeight: 50,
+      fontSize: 15,
+      padding: 0
+    })
+};
 
 const genStarCount = (team, att) => {
     switch(att){
@@ -63,7 +87,6 @@ function App() {
   ////////////////////////////
   // State results
   ////////////////////////////
-
   // Predict Results for given Game selection
   const [results, setResults] = React.useState( async () => {
 
@@ -94,7 +117,6 @@ function App() {
   ////////////////////////////
   // State calibrationData
   ////////////////////////////
-
   // Calibration Plot data
   // eslint-disable-next-line no-unused-vars
   const [calibrationData, setCalibrationData] = React.useState( async () => {
@@ -121,6 +143,7 @@ function App() {
             onChange={handleHomeChange}
             loadOptions={loadTeams}
             defaultOptions
+            styles={customStylesHomeMenu}
             getOptionLabel={(t) => t.name}
             getOptionValue={(t) => t}
             className="teamSelect"
@@ -142,6 +165,7 @@ function App() {
             onChange={handleAwayChange}
             loadOptions={loadTeams}
             defaultOptions
+            styles={customStylesAwayMenu}
             getOptionLabel={(t) => t.name}
             getOptionValue={(t) => t}
             className="teamSelect"
@@ -388,9 +412,36 @@ function App() {
         />
 
         <CalibrationPlot
-            data={ calibrationData != null ? calibrationData : [ 
-                {"forecastBin": 0.3, "binMin": 0.25, "binMax": 0.35, "observations": 50, "observed": 0.50},
-                {"forecastBin": 0.6, "binMin": 0.55, "binMax": 0.65, "observations": 50, "observed": 0.50},
+            data={[ 
+                {"forecastBin": 0.2, "binMin": 0.25, "binMax": 0.35, "observations": 5, "observed": 0.20},
+                {"forecastBin": 0.4, "binMin": 0.55, "binMax": 0.65, "observations": 5, "observed": 0.40},
+                {"forecastBin": 0.6, "binMin": 0.85, "binMax": 0.95, "observations": 5, "observed": 0.60},
+                {"forecastBin": 0.8, "binMin": 0.00, "binMax": 0.00, "observations": 5, "observed": 0.80},
+            ]}
+        />
+
+        <BettingPlot
+            data={[ 
+                {
+                    "date": "2022-06-21",
+                    "game": "Arsenal vs Tottenham",
+                    "bet": "Tottenham",
+                    "betValue": 300,
+                    "toepuntOdds": 1.8,
+                    "marketOdds": 2.2,
+                    "result": "WON",
+                    "resultValue": 660
+                },
+                {
+                    "date": "2022-06-22",
+                    "game": "Arsenal vs Tottenham",
+                    "bet": "Tottenham",
+                    "betValue": 50,
+                    "toepuntOdds": 1.4,
+                    "marketOdds": 1.8,
+                    "result": "LOST",
+                    "resultValue": 90
+                }
             ]}
         />
 

@@ -9,6 +9,7 @@ app.use(express.json());
 
 const teams = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/teams.json'))).teams
 const calibration = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/calibration.json'))).calibration
+const betting = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/betting.json'))).bets
 
 app.get("/ping", (req, res) => {
     res.json( { message: "pong!" } )
@@ -20,6 +21,10 @@ app.get("/teams", (req, res) => {
 
 app.get("/calibration", (req, res) => {
   res.json( calibration )
+});
+
+app.get("/betting", (req, res) => {
+  res.json( betting )
 });
 
 app.post("/predict", (req, res) => {

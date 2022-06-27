@@ -46,9 +46,9 @@ const ResultGrid = ({ data }) => {
             .join("rect")
                 .attr("fill", d => d.colour)
                 .attr("x", d => x(d.start))
-                .attr("y", margin.top)
+                .attr("y", margin.top/2)
                 .attr("width", d => x(d.end) - x(d.start))
-                .attr("height", height)
+                .attr("height", height/2)
         
         svg.append("g")
             .selectAll("text")
@@ -56,14 +56,14 @@ const ResultGrid = ({ data }) => {
             .join("text")
                 .attr("fill", "black")
                 .attr("x", d => x( (d.start + d.end)/2 - .04 ))
-                .attr("y", height - margin.top/3)
+                .attr("y", height - margin.top + 4)
                 .attr("opacity", (d) => data.scores != null && d.end - d.start > 0.06 ? 1 : 0 )
                 .text((d) => Math.round(d.probability*100) + '%')
   
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
   
-    return <svg ref={svgRef} class="ResultsGrid"/>;
+    return <svg ref={svgRef} className="ResultsGrid"/>;
   };
     
   export default ResultGrid;

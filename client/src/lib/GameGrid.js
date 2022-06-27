@@ -246,7 +246,7 @@ const GameGrid = ({ data }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
 
-    return <svg ref={svgRef} class="GameGrid"/>;
+    return <svg ref={svgRef} className="GameGrid"/>;
 };
   
 export default GameGrid;
