@@ -5,7 +5,6 @@ import axios from "axios";
 import AsyncSelect from 'react-select/async';
 import GameGrid from './lib/GameGrid';
 import ResultGrid from "./lib/ResultGrid";
-import CalibrationPlot from "./lib/CalibrationPlot";
 import BettingPlot from "./lib/BettingPlot";
 
 
