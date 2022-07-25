@@ -411,15 +411,6 @@ function App() {
             data={ results && results.scores != null ? results : { resultHome: 0.3333, resultDraw: 0.3333, resultAway: 0.3333 } }
         />
 
-        <CalibrationPlot
-            data={[ 
-                {"forecastBin": 0.2, "binMin": 0.25, "binMax": 0.35, "observations": 5, "observed": 0.20},
-                {"forecastBin": 0.4, "binMin": 0.55, "binMax": 0.65, "observations": 5, "observed": 0.40},
-                {"forecastBin": 0.6, "binMin": 0.85, "binMax": 0.95, "observations": 5, "observed": 0.60},
-                {"forecastBin": 0.8, "binMin": 0.00, "binMax": 0.00, "observations": 5, "observed": 0.80},
-            ]}
-        />
-
         <BettingPlot
             data={[ 
                 {

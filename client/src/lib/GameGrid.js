@@ -207,8 +207,9 @@ const GameGrid = ({ data }) => {
             .data(boxes, function(d) {return d.away+':'+d.home;})
             .join('rect')
                 .attr('class', 'gridBox')
-                .attr('x', function(d) { return x(d.away) })
-                .attr('y', function(d) { return y(d.home) })
+                .attr("id", (d) => d.away+':'+d.home)
+                .attr('x', (d) => x(d.away) )
+                .attr('y', (d) => y(d.home) )
                 .attr('rx', 4)
                 .attr('ry', 4)
                 .attr('width', x.bandwidth() )
@@ -217,6 +218,9 @@ const GameGrid = ({ data }) => {
                 .style('stroke', 'grey')
                 .style('opacity', 0.8)
                 .style('fill', 'transparent')
+                .on("click", (d,i) => {
+                    d3.select(d.target).style("stroke-width", 2)
+                })
 
         svg.selectAll('.gridBox')
             .data(data.scores)
