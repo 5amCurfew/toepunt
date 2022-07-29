@@ -52,6 +52,9 @@ const BettingPlot = ({ data }) => {
                 .on("click", (d, i) => {
 
                     d3.selectAll(".betTooltip").remove()
+                    d3.selectAll("circle").style("stroke-width", "1px")
+
+                    d3.select(d.target).style("stroke-width", "2px")
 
                     //d3.select(d.target).attr("stroke-width", 2)
 
@@ -63,6 +66,10 @@ const BettingPlot = ({ data }) => {
                         .attr("size", "10px")
                         .style("text-anchor", "middle")
                         .text(`${i.game}`)
+                        .on("click", (d,i) => {
+                            d3.selectAll(".betTooltip").remove()
+                            d3.selectAll("circle").style("stroke-width", "1px")
+                        })
                     
                     svg.append("text")
                         .attr("class", "betTooltip")
@@ -73,6 +80,10 @@ const BettingPlot = ({ data }) => {
                         .attr("size", "10px")
                         .style("text-anchor", "middle")
                         .text(`${i.toepuntOdds} vs ${i.marketOdds}`)
+                        .on("click", (d,i) => {
+                            d3.selectAll(".betTooltip").remove()
+                            d3.selectAll("circle").style("stroke-width", "1px")
+                        })
                     
                     svg.append("text")
                         .attr("class", "betTooltip")
@@ -83,6 +94,10 @@ const BettingPlot = ({ data }) => {
                         .attr("size", "10px")
                         .style("text-anchor", "middle")
                         .text(`${i.result} (${i.result === "WON" ? '+' : '-'}£${i.resultValue})`)
+                        .on("click", (d,i) => {
+                            d3.selectAll(".betTooltip").remove()
+                            d3.selectAll("circle").style("stroke-width", "1px")
+                        })
                 })
         
         svg.append("line")
