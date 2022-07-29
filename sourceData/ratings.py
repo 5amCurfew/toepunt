@@ -23,5 +23,11 @@ for url in ["https://www.fifaindex.com/teams/?page=1&league=13&league=14&order=d
                         for ovr in cellOvr:
                             ratings["teams"].append({"name": team.find('a').text, "ATT": att.find("span").text, "MID": mid.find("span").text, "DEF": dfc.find("span").text, "OVR": ovr.find("span").text})
 
+# take second element for sort
+def pullName(elem):
+    return elem["name"]
+
+ratings["teams"] = sorted(ratings["teams"], key=lambda i: i['name'])
+
 open("../server/src/data/teams.json", "w").write(json.dumps(ratings))
 print(json.dumps(ratings))
