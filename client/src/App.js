@@ -57,7 +57,6 @@ const genStarCount = (team, att) => {
     }
 }
 
-
 function App() {
 
   ////////////////////////////
@@ -81,7 +80,6 @@ function App() {
     setAwayTeam(selectedOption);
     predictResults();
   };
-
 
   ////////////////////////////
   // State results
@@ -111,20 +109,6 @@ function App() {
 
     }
   }
-
-
-  ////////////////////////////
-  // State calibrationData
-  ////////////////////////////
-  // Calibration Plot data
-  // eslint-disable-next-line no-unused-vars
-  const [calibrationData, setCalibrationData] = React.useState( async () => {
-
-    let res = await axios.get('/calibration')
-  
-    return res.data
-
-  });
 
   React.useEffect(() => {
     predictResults()
@@ -411,26 +395,28 @@ function App() {
         />
 
         <BettingPlot
-            data={[ 
+            data={[
                 {
-                    "date": "2022-06-21",
-                    "game": "Arsenal vs Tottenham",
-                    "bet": "Tottenham",
-                    "betValue": 300,
-                    "toepuntOdds": 1.8,
-                    "marketOdds": 2.2,
-                    "result": "WON",
-                    "resultValue": 660
+                    "date": "2022-08-13",
+                    "game": "Southampton vs Leeds United",
+                    "bet": "Southampton",
+                    "betValue": 20,
+                    "toepuntOdds": 2.5,
+                    "marketOdds": 2.5,
+                    "tradeOut": false,
+                    "result": "LOST",
+                    "resultValue": null
                 },
                 {
-                    "date": "2022-06-22",
-                    "game": "Arsenal vs Tottenham",
-                    "bet": "Tottenham",
-                    "betValue": 50,
-                    "toepuntOdds": 1.4,
-                    "marketOdds": 1.8,
+                    "date": "2022-08-13",
+                    "game": "Aston Villa vs Everton",
+                    "bet": "Everton",
+                    "betValue": 2.5,
+                    "toepuntOdds": 3.6,
+                    "marketOdds": 5.1,
+                    "tradeOut": false,
                     "result": "LOST",
-                    "resultValue": 90
+                    "resultValue": 10
                 }
             ]}
         />

@@ -55,10 +55,11 @@ const ResultGrid = ({ data }) => {
             .data(dims)
             .join("text")
                 .attr("fill", "black")
-                .attr("x", d => x( (d.start + d.end)/2 - .04 ))
+                .style('font', "12px monospace")
+                .attr("x", d => x( (d.start + d.end)/2 - .1 ))
                 .attr("y", height - margin.top + 4)
                 .attr("opacity", (d) => data.scores != null && d.end - d.start > 0.06 ? 1 : 0 )
-                .text((d) => Math.round(d.probability*100) + '%')
+                .text((d) => Math.round(d.probability*100) + '% (' + Math.round(1/d.probability*10)/10 + ')')
   
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])

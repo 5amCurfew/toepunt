@@ -36,8 +36,16 @@ const BettingPlot = ({ data }) => {
 
         // Add a scale for bubble size (size of wager)
         var z = d3.scaleLinear()
-            .domain([0, 300])
-            .range([9, 18]);
+            .domain([0, 100])
+            .range([5, 50]);
+
+        svg.append("line")
+            .attr("x1", x(0))
+            .attr("y1", y(0))
+            .attr("x2", x(5))
+            .attr("y2", y(5))
+            .attr("stroke", "black")
+            .style("stroke-dasharray", ("10"))
 
         svg.append("g")
             .selectAll("dot")
@@ -99,14 +107,6 @@ const BettingPlot = ({ data }) => {
                             d3.selectAll("circle").style("stroke-width", "1px")
                         })
                 })
-        
-        svg.append("line")
-            .attr("x1", x(0))
-            .attr("y1", y(0))
-            .attr("x2", x(5))
-            .attr("y2", y(5))
-            .attr("stroke", "black")
-            .style("stroke-dasharray", ("10"))
 
         svg.append("text")             
             .attr("transform","translate(" + (width/2) + " ," + (height + margin.top + 10) + ")")

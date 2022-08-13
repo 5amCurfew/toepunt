@@ -1,15 +1,27 @@
 {
     "bets": [
         {
-            "date": "2022-06-21",
-            "game": "Arsenal vs Tottenham",
-            "bet": "Tottenham",
-            "betValue": 10,
-            "toepuntOdds": 1.8,
-            "marketOdds": 2.2,
-            "result": "WIN",
-            "resultValue": 22
+            "date": "2022-08-13",
+            "game": "Southampton vs Leeds United",
+            "bet": "Southampton",
+            "betValue": 20,
+            "toepuntOdds": 2.5,
+            "marketOdds": 2.5,
+            "tradeOut": false,
+            "result": "LOST",
+            "resultValue": 10
+        },
+        {
+            "date": "2022-08-13",
+            "game": "Aston Villa vs Everton",
+            "bet": "Everton",
+            "betValue": 2.5,
+            "toepuntOdds": 3.6,
+            "marketOdds": 5.1,
+            "tradeOut": false,
+            "result": "LOST",
+            "resultValue": 10
         }
     ],
-    "updated_at": "2022-06-21 19:21:27.080366"
+    "updated_at": "2022-08-13 00:00:00"
 }
