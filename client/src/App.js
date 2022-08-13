@@ -399,6 +399,7 @@ function App() {
                 {
                     "date": "2022-08-13",
                     "game": "Southampton vs Leeds United",
+                    "gameResult": null,
                     "bet": "Southampton",
                     "betValue": 20,
                     "toepuntOdds": 2.5,
@@ -410,13 +411,14 @@ function App() {
                 {
                     "date": "2022-08-13",
                     "game": "Aston Villa vs Everton",
+                    "gameResult": "2-1",
                     "bet": "Everton",
                     "betValue": 2.5,
                     "toepuntOdds": 3.6,
                     "marketOdds": 5.1,
                     "tradeOut": false,
                     "result": "LOST",
-                    "resultValue": 10
+                    "resultValue": -2.5
                 }
             ]}
         />
