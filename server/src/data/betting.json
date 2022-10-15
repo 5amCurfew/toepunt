@@ -9,7 +9,7 @@
             "marketOdds": 2.5,
             "tradeOut": false,
             "result": "LOST",
-            "resultValue": 10
+            "resultValue": -20
         },
         {
             "date": "2022-08-13",
@@ -20,7 +20,7 @@
             "marketOdds": 5.1,
             "tradeOut": false,
             "result": "LOST",
-            "resultValue": 10
+            "resultValue": -2.5
         }
     ],
     "updated_at": "2022-08-13 00:00:00"

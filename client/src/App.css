@@ -5,12 +5,18 @@
 }
 body {
     display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
     background-color: #f9f9f9;
 }
 
 .ratingsBox{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ratingsTitle{
+    font-size: "100%"
 }
 
 .ratingsBlock{

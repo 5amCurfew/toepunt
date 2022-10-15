@@ -5,8 +5,6 @@ import axios from "axios";
 import AsyncSelect from 'react-select/async';
 import GameGrid from './lib/GameGrid';
 import ResultGrid from "./lib/ResultGrid";
-import BettingPlot from "./lib/BettingPlot";
-
 
 // Misc.
 import Emoji from './lib/Emoji';
@@ -28,7 +26,7 @@ const customStylesHomeMenu = {
       border: '2px solid #077bbd',
       height: 50,
       minHeight: 50,
-      fontSize: 15,
+      fontSize: "100%",
       padding: 0
     })
 };
@@ -39,7 +37,7 @@ const customStylesAwayMenu = {
       border: '2px solid #fface5',
       height: 50,
       minHeight: 50,
-      fontSize: 15,
+      fontSize: "100%",
       padding: 0
     })
 };
@@ -81,6 +79,8 @@ function App() {
     predictResults();
   };
 
+
+
   ////////////////////////////
   // State results
   ////////////////////////////
@@ -114,6 +114,8 @@ function App() {
     predictResults()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [homeTeam, awayTeam]);
+
+
 
   ////////////////////////////
   // UI
@@ -392,35 +394,6 @@ function App() {
 
         <ResultGrid
             data={ results && results.scores != null ? results : { resultHome: 0.3333, resultDraw: 0.3333, resultAway: 0.3333 } }
-        />
-
-        <BettingPlot
-            data={[
-                {
-                    "date": "2022-08-13",
-                    "game": "Southampton vs Leeds United",
-                    "gameResult": null,
-                    "bet": "Southampton",
-                    "betValue": 20,
-                    "toepuntOdds": 2.5,
-                    "marketOdds": 2.5,
-                    "tradeOut": false,
-                    "result": "LOST",
-                    "resultValue": null
-                },
-                {
-                    "date": "2022-08-13",
-                    "game": "Aston Villa vs Everton",
-                    "gameResult": "2-1",
-                    "bet": "Everton",
-                    "betValue": 2.5,
-                    "toepuntOdds": 3.6,
-                    "marketOdds": 5.1,
-                    "tradeOut": false,
-                    "result": "LOST",
-                    "resultValue": -2.5
-                }
-            ]}
         />
 
     </div>

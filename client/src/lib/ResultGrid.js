@@ -38,7 +38,7 @@ const ResultGrid = ({ data }) => {
         const svg = svgEl
             .attr("viewBox", [0, 0, width, height])
         
-        const x = d3.scaleLinear([0, 1], [margin.left, width - margin.right])
+        const x = d3.scaleLinear([0, 1], [margin.left, width])
         
         svg.append("g")
             .selectAll("rect")
@@ -55,10 +55,10 @@ const ResultGrid = ({ data }) => {
             .data(dims)
             .join("text")
                 .attr("fill", "black")
-                .style('font', "12px monospace")
-                .attr("x", d => x( (d.start + d.end)/2 - .1 ))
+                .style('font', "75% monospace")
+                .attr("x", d => x( (d.start + d.end)/2 ) - margin.left)
                 .attr("y", height - margin.top + 4)
-                .attr("opacity", (d) => data.scores != null && d.end - d.start > 0.06 ? 1 : 0 )
+                .attr("opacity", (d) => data.scores != null && d.end - d.start > 0.15 ? 1 : 0 )
                 .text((d) => Math.round(d.probability*100) + '% (' + Math.round(1/d.probability*10)/10 + ')')
   
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -163,7 +163,7 @@ const GameGrid = ({ data }) => {
         svgEl.selectAll("*").remove();
     
         const svg = svgEl
-            .attr("viewBox", [-margin.left, -margin.top, width + margin.left*2, height + margin.top])
+            .attr("viewBox", [-margin.left - margin.right, -margin.top - margin.bottom, width + margin.left + margin.right, height + margin.top + margin.bottom])
     
         var x = d3
             .scaleBand()
@@ -172,7 +172,7 @@ const GameGrid = ({ data }) => {
             .padding(0.05);
         
         svg.append('g')
-            .style('font-size', 15)
+            .style('font-size', "75%")
             .style('color', "black")
             .style('font-weight', "lighter")
             .call(d3.axisTop(x).tickSize(0))
@@ -185,13 +185,30 @@ const GameGrid = ({ data }) => {
             .padding(0.05)
     
         svg.append('g')
-            .style('font-size', 15)
+            .style('font-size', "75%")
             .style('color', "black")
             .style('font-weight', "lighter")
             .call(d3.axisLeft(y).tickSize(0))
             .select('.domain')
             .remove()
+
+        svg.append('text')
+            .attr('class', 'y label')
+            .style('font-size', "80%")
+            .attr("text-anchor", "middle")
+            .attr("x", -height/2)
+            .attr("y", -margin.top)
+            .attr("transform", "rotate(-90)")
+            .text('Home Goals')
     
+        svg.append('text')
+            .attr('class', 'x label')
+            .style('font-size', "80%")
+            .attr("text-anchor", "middle")
+            .attr("x", width/2)
+            .attr("y", -margin.left)
+            .text('Away Goals')
+
         // Build color scale
         var homeColour = d3.scaleLinear()
             .domain([0,0.12])
@@ -240,11 +257,12 @@ const GameGrid = ({ data }) => {
             .enter()
             .append("text")
                 .attr('fill', 'black')
+                .style('font', "100% monospace")
                 .attr('opacity', function(d) { return scale(d.probability, 0, 0.2, 0.2, 1) })
                 .attr("x", function(d) { return x(d.away) + 20 })
                 .attr("y", function(d) { return y(d.home) + 33 })
                 .text(function(d) {
-                    return `${Math.round(d.probability*100)}%`;
+                    return d.probability < 0.01 ? '<1%' : `${Math.round(d.probability*100)}%`;
                 })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
